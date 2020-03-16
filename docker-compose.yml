@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  database:
+    image: mongo:latest
+    container_name: 'database'
+    environment:
+        MONGO_INITDB_DATABASE: rcdb
+        MONGO_INITDB_ROOT_USERNAME: rcroot
+        MONGO_INITDB_ROOT_PASSWORD: rcpass
+    ports:
+      - '27017-27019:27017-27019'
+    volumes:
+      - ./mongo-entrypoint/:/docker-entrypoint-initdb.d/
+      - ./mongo-volume:/data/db
