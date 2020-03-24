@@ -87,12 +87,11 @@ const roomSchema: Schema = new Schema({
 const Room = mongoose.model<IRoom>('Room', roomSchema);
 
 export const findAllRooms = (): Promise<IRoom[]> => Room.find()
-  .then((data: IRoom[]) => data)
-  .catch((error: Error) => { throw error; });
+  .then((data) => data)
+  .catch((error) => { throw error; });
 
-export const findRoomById = (id: string): Promise<IRoom | null> => Room.findOne({ id })
-  .then((data: IRoom | null) => <IRoom>throwOrReturnValue(data, 'Could not find room with matching property.'))
-  .catch((error: Error) => { throw error; });
-
+export const findRoomById = (id: string): Promise<IRoom> => Room.findOne({ id })
+  .then((data) => <IRoom>throwOrReturnValue(data, 'Could not find room with matching property.'))
+  .catch((error) => { throw error; });
 
 export default Room;

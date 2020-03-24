@@ -8,9 +8,9 @@ var roomResolver_1 = __importDefault(require("./roomResolver"));
 exports.userResolvers = {
     Query: {
         users: userResolver_1.default.allUsersQueryResolver,
-        user: userResolver_1.default.findUserByIdResolver,
+        user: userResolver_1.default.findUserByIdQueryResolver,
         rooms: roomResolver_1.default.allRoomsQueryResolver,
-        room: roomResolver_1.default.findRoomByIdResolver,
+        room: roomResolver_1.default.findByIdQueryResolver,
     },
 };
 exports.default = exports.userResolvers;

@@ -44,4 +44,10 @@ exports.findByNick = function (nick) { return User.findOne({ nick: nick })
 exports.findByMail = function (mail) { return User.findOne({ mail: mail })
     .then(function (data) { return errors_1.throwOrReturnValue(data, 'Could not find user with matching property.'); })
     .catch(function (error) { throw error; }); };
+exports.addUser = function (user) {
+    var newUser = new User(user);
+    newUser.save()
+        .then()
+        .catch(function (error) { throw error; });
+};
 exports.default = User;

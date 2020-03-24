@@ -3,7 +3,6 @@ import {
   findAllRooms, findRoomById, IRoom,
 } from '../../database/models/room';
 
-
 export type RoomResolverArgs = { id: string }
 
 const resolver = {
@@ -16,11 +15,15 @@ const resolver = {
     }
   },
 
-  findRoomByIdResolver:
-      async (_: any, args: RoomResolverArgs): Promise<IRoom | null> => {
+  findByIdQueryResolver:
+      async (_: any, args: RoomResolverArgs): Promise<IRoom> => {
         const { id } = args;
 
-        return findRoomById(id);
+        let result;
+        if (id) result = await findRoomById(id);
+        if (!result) throw new Error('Could not find room with matching criteria.');
+
+        return result;
       },
 };
 

@@ -4,7 +4,7 @@ import {
 } from '../../database/models/user';
 
 
-export type UserResolverArgs = { id: string }
+export type UserResolverQueryArgs = { id: string }
 
 const resolver = {
   allUsersQueryResolver: async () => {
@@ -16,8 +16,8 @@ const resolver = {
     }
   },
 
-  findUserByIdResolver:
-    async (_: any, args: UserResolverArgs): Promise<IUser | null> => {
+  findUserByIdQueryResolver:
+    async (_: any, args: UserResolverQueryArgs): Promise<IUser | null> => {
       const { id } = args;
 
       return findById(id);

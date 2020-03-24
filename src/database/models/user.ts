@@ -9,6 +9,13 @@ export interface IUser extends mongoose.Document {
     mail: string
 }
 
+export interface ICreateUserInput {
+    name: IUser['name'],
+    nick: IUser['nick'],
+    joined: IUser['joined'],
+    mail: IUser['mail'],
+}
+
 const userSchema: Schema = new Schema({
   id: {
     type: String,
@@ -38,16 +45,23 @@ export const findAllUsers = (): Promise<IUser[]> => User.find()
   .then((data: IUser[]) => data)
   .catch((error: Error) => { throw error; });
 
-export const findById = (id: string): Promise<IUser | null> => User.findOne({ id })
+export const findById = (id: IUser['id']): Promise<IUser | null> => User.findOne({ id })
   .then((data: IUser | null) => <IUser>throwOrReturnValue(data, 'Could not find user with matching property.'))
   .catch((error: Error) => { throw error; });
 
-export const findByNick = (nick: string): Promise<IUser | null> => User.findOne({ nick })
+export const findByNick = (nick: IUser['nick']): Promise<IUser | null> => User.findOne({ nick })
   .then((data: IUser | null) => <IUser>throwOrReturnValue(data, 'Could not find user with matching property.'))
   .catch((error: Error) => { throw error; });
 
-export const findByMail = (mail: string): Promise<IUser | null> => User.findOne({ mail })
+export const findByMail = (mail: IUser['mail']): Promise<IUser | null> => User.findOne({ mail })
   .then((data: IUser | null) => <IUser>throwOrReturnValue(data, 'Could not find user with matching property.'))
   .catch((error: Error) => { throw error; });
+
+export const addUser = (user: ICreateUserInput) => {
+  const newUser = new User(user);
+  newUser.save()
+    .then()
+    .catch((error: Error) => { throw error; });
+};
 
 export default User;

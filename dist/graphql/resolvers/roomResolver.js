@@ -55,11 +55,22 @@ var resolver = {
             }
         });
     }); },
-    findRoomByIdResolver: function (_, args) { return __awaiter(void 0, void 0, void 0, function () {
-        var id;
+    findByIdQueryResolver: function (_, args) { return __awaiter(void 0, void 0, void 0, function () {
+        var id, result;
         return __generator(this, function (_a) {
-            id = args.id;
-            return [2, room_1.findRoomById(id)];
+            switch (_a.label) {
+                case 0:
+                    id = args.id;
+                    if (!id) return [3, 2];
+                    return [4, room_1.findRoomById(id)];
+                case 1:
+                    result = _a.sent();
+                    _a.label = 2;
+                case 2:
+                    if (!result)
+                        throw new Error('Could not find room with matching criteria.');
+                    return [2, result];
+            }
         });
     }); },
 };

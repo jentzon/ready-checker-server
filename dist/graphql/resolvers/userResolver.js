@@ -55,7 +55,7 @@ var resolver = {
             }
         });
     }); },
-    findUserByIdResolver: function (_, args) { return __awaiter(void 0, void 0, void 0, function () {
+    findUserByIdQueryResolver: function (_, args) { return __awaiter(void 0, void 0, void 0, function () {
         var id;
         return __generator(this, function (_a) {
             id = args.id;
